@@ -1,7 +1,12 @@
 ﻿using Business;
 using Business.Abstract;
+using Business.Concrete;
 using Business.Requests.Brand;
 using Business.Responses.Brand;
+using DataAccess.Abstract;
+using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;

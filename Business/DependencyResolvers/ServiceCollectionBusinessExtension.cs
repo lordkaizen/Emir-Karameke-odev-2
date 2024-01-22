@@ -18,16 +18,7 @@ public static class ServiceCollectionBusinessExtension
         services
             .AddSingleton<IBrandService, BrandManager>()
             .AddSingleton<IBrandDal, InMemoryBrandDal>()
-            .AddSingleton<BrandBusinessRules>()
-            .AddSingleton<IModelService, ModelManager>()
-            .AddSingleton<IModelDal, InMemoryModelDal>()
-            .AddSingleton<ModelBusinessRules>()
-            .AddSingleton<IFuelService, FuelManager>()
-            .AddSingleton<IFuelDal, InMemoryFuelDal>()
-            .AddSingleton<FuelBusinessRules>()
-            .AddSingleton<ITransmissionService, TransmissionManager>()
-            .AddSingleton<ITransmissionDal, InMemoryTransmissionDal>()
-            .AddSingleton<TransmissionBusinessRules>();// Fluent
+            .AddSingleton<BrandBusinessRules>(); // Fluent
         // Singleton: Tek bir nesne oluşturur ve herkese onu verir.
         // Ek ödev diğer yöntemleri araştırınız.
 
@@ -35,6 +26,5 @@ public static class ServiceCollectionBusinessExtension
         // Reflection yöntemiyle Profile class'ını kalıtım alan tüm class'ları bulur ve AutoMapper'a ekler.
 
         return services;
-
     }
 }
