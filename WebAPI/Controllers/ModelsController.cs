@@ -1,21 +1,20 @@
-﻿using Business;
-using Business.Abstract;
-using Business.Requests.Brand;
-using Business.Responses.Brand;
+﻿using Business.Abstract;
+using Business.Requests.Model;
+using Business.Responses.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
-
 [Route("api/[controller]")]
 [ApiController]
-public class BrandsController : ControllerBase
+public class ModelsController : Controller
 {
-    private readonly IBrandService _brandService; // Field
 
-    public BrandsController(IBrandService brandService)
+    private readonly IModelService _modelService; // Field
+
+    public ModelsController(IModelService modelService)
     {
         // Her HTTP Request için yeni bir Controller nesnesi oluşturulur.
-        _brandService = brandService;
+        _modelService = modelService;
         // Daha sonra IoC Container yapımızı kurduğumuz Dependency Injection ile daha verimli hale getiricez.
     }
 
@@ -27,19 +26,19 @@ public class BrandsController : ControllerBase
     //}
 
     [HttpGet] // GET http://localhost:5245/api/brands
-    public GetBrandListResponse GetList([FromQuery] GetBrandListRequest request) // Referans tipleri varsayılan olarak request body'den alır.
+    public GetModelListResponse GetList([FromQuery] GetModelListRequest request) // Referans tipleri varsayılan olarak request body'den alır.
     {
-        GetBrandListResponse response = _brandService.GetList(request);
+        GetModelListResponse response = _modelService.GetList(request);
         return response; // JSON
     }
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
     [HttpPost] // POST http://localhost:5245/api/brands
-    public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
+    public ActionResult<AddModelResponse> Add(AddModelRequest request)
     {
         try
         {
-            AddBrandResponse response = _brandService.Add(request);
+            AddModelResponse response = _modelService.Add(request);
 
             //return response; // 200 OK
             return CreatedAtAction(nameof(GetList), response); // 201 Created
